@@ -1,0 +1,116 @@
+#include <stdio.h>
+#include <stdlib.h>
+void main()
+{
+    void panduan(char a[][10],int m,int n);
+    char a[100][10];
+    int i,m,n;
+    printf("请输入占地的行数与列数\n");
+    scanf("%d%d",&m,&n);
+    for(i=0;i<m;i++)
+    {
+        scanf("%s",&a[i]);
+    }
+    panduan(a,m,n);
+    system("pause");
+}
+void panduan(char a[][10],int m,int n)
+{
+    int i=0,j=0,q=0,k,c,d,p;
+    p=m;
+    if(n<m)
+    {
+        p=n;
+    }
+    for(k=0;k<(p-1)/2+1;k++)
+    {
+        c=m-1-k;
+        d=n-1-k;
+        if(a[k][k]=='p')
+        {
+            q++;
+            a[k][k+1]='h';
+            a[k][k+2]='h';
+            a[k+1][k]='h';
+            a[k+2][k]='h';
+            a[k][k]='h';
+        }
+         if(a[k][d]=='p')
+        {
+            q++;
+            a[k+1][d]='h';
+            a[k+2][d]='h';
+            a[k][d-1]='h';
+            a[k][d-2]='h';
+            a[k][d]='h';
+        }
+         if(a[c][k]=='p')
+        {
+            q++;
+            a[c][k+1]='h';
+            a[c][k+2]='h';
+            a[c-1][k]='h';
+            a[c-2][k]='h';
+            a[c][k]='h';
+        }
+         if(a[c][d]=='p')
+        {
+            q++;
+            a[c-1][d]='h';
+            a[c-2][d]='h';
+            a[c][d-1]='h';
+            a[c][d-2]='h';
+            a[c][d]='h';
+        }
+          for(i=k,j=k;j<d;j++)
+          {
+                if(a[i][j]=='p')
+                {
+                   q++;
+                a[i+1][j]='h';
+                a[i+2][j]='h';
+                a[i][j+1]='h';
+                a[i][j+2]='h';
+                a[i][j]='h';
+               }
+            }
+        for(i=k,j=d;i<c;i++)
+        {
+            if(a[i][j]=='p')
+            {
+                q++;
+                a[i+1][j]='h';
+                a[i+2][j]='h';
+                a[i][j-1]='h';
+                a[i][j-2]='h';
+                a[i][j]='h';
+            }
+        }
+        for(i=c,j=k;j<d;j++)
+        {
+            if(a[i][j]=='p')
+            {
+                q++;
+                a[i-1][j]='h';
+                a[i-2][j]='h';
+                a[i][j+1]='h';
+                a[i][j+2]='h';
+                a[i][j]='h';
+            }
+        }
+        for(i=c,j=k;i>0;i--)
+        {
+            if(a[i][j]=='p')
+            {
+                q++;
+                a[i][j+1]='h';
+                a[i][j+2]='h';
+                a[i-1][j]='h';
+                a[i-2][j]='h';
+                a[i][j]='h';
+            }
+        }
+    printf("%d\n",q);
+
+    }
+}
